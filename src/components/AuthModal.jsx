@@ -31,7 +31,7 @@ export default function AuthModal() {
     setLoading(true);
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: window.location.origin },
+      options: { redirectTo: 'https://astro-app-omega-orcin.vercel.app' },
     });
     if (error) { setErr(error.message); setLoading(false); }
   };
