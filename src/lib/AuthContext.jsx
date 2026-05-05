@@ -35,19 +35,30 @@ export function AuthProvider({ children }) {
   };
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    // Initial session check
+    supabase.auth.getSession().then(({ data: { session }, error }) => {
+      if (error) console.error('[AuthContext] getSession error:', error);
+      console.log('[AuthContext] Initial session:', session ? 'Found' : 'None');
       setUser(session?.user ?? null);
       fetchClaimStatus(session?.user?.id);
       setLoading(false);
     });
 
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: listener } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log('[AuthContext] Auth State Change:', event, session ? 'Session active' : 'No session');
       const u = session?.user ?? null;
       setUser(u);
       fetchClaimStatus(u?.id);
+      
       if (u && onSuccessCb) {
+        console.log('[AuthContext] Executing success callback');
         onSuccessCb();
         setOnSuccessCb(null);
+      }
+
+      // Check for errors in URL (handled by Supabase, but useful to see)
+      if (event === 'SIGNED_OUT') {
+        setHasClaimedFreeConsult(false);
       }
     });
 
