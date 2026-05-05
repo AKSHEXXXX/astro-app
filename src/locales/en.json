@@ -1,0 +1,165 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "prediction": "Prediction",
+    "services": "Services",
+    "testimonials": "Testimonials",
+    "contact": "Contact",
+    "bookSession": "Book Session"
+  },
+  "hero": {
+    "badge": "Vedic Astrology",
+    "headline1": "Discover Your",
+    "headline2": "Cosmic Destiny",
+    "sub": "Ancient Vedic wisdom. Personalized guidance. Transformative clarity.",
+    "ctaPrimary": "Get Free Prediction",
+    "ctaSecondary": "Book a Session"
+  },
+  "prediction": {
+    "title": "Get Your Free Cosmic Reading",
+    "sub": "Enter your birth details — receive your Vedic blueprint instantly.",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "As per birth records",
+    "dobLabel": "Date of Birth",
+    "tobLabel": "Time of Birth (recommended for accurate Lagna)",
+    "pobLabel": "Place of Birth",
+    "genderLabel": "Gender",
+    "generateBtn": "Generate Prediction",
+    "generating": "Reading the stars..."
+  },
+  "result": {
+    "cosmicProfile": "Your Cosmic Profile",
+    "shareBtn": "Share My Reading",
+    "bookConsult": "Book Free 15-Min Consultation",
+    "bookConsultSub": "Discuss your chart with Ayush — first call free",
+    "newPrediction": "← New Prediction"
+  },
+  "zodiacBar": {
+    "todayLabel": "Today's Horoscope"
+  },
+  "about": {
+    "label": "The Astrologer",
+    "title": "Meet Your Astrologer",
+    "tagline": "Vedic Astrologer · Jyotish Practitioner",
+    "bio": "With over 5 years of dedicated study in Vedic astrology, Jyotish, and Nadi techniques, I have guided 500+ individuals through life's most critical crossroads — career, marriage, health, and spiritual growth. My readings combine classical Parashari methods with modern psychological insight.",
+    "specialties": "Specialties",
+    "creds": {
+      "jyotish": "Certified Jyotish Practitioner",
+      "consults": "500+ Consultations",
+      "since": "Since 2020"
+    },
+    "specs": [
+      "Birth Chart Analysis",
+      "Career & Finance",
+      "Relationship Compatibility",
+      "Muhurta (Auspicious Timing)",
+      "Remedies & Gemstone Advice"
+    ]
+  },
+  "services": {
+    "label": "Offerings",
+    "title": "Services & Offerings",
+    "list": {
+      "free": {
+        "title": "Free Cosmic Reading",
+        "desc": "Instant birth sign analysis, personality overview, lucky numbers, gemstones and element.",
+        "cta": "Get Free Reading"
+      },
+      "premium": {
+        "title": "Premium Consultation",
+        "desc": "Full birth chart analysis with career, relationships, remedies and session recording.",
+        "cta": "Book Now",
+        "badge": "Most Popular"
+      },
+      "report": {
+        "title": "Detailed Report",
+        "desc": "Written PDF report with complete analysis, remedies, and 12-month yearly forecast.",
+        "cta": "Order Report"
+      }
+    }
+  },
+  "testimonials": {
+    "label": "Client Experiences",
+    "title": "What the Stars Say About Us"
+  },
+  "booking": {
+    "label": "Book a Session",
+    "title": "Book Your Personal Consultation",
+    "included": "What's Included",
+    "step1": "STEP 1 · PICK A SLOT",
+    "total": "Total",
+    "period": "/ 30 min",
+    "selectSlot": "Select a time slot to continue",
+    "payBtn": "💳 Pay ₹500 — ",
+    "trust": [
+      "🔒 Secure via Razorpay",
+      "✅ Instant Confirmation",
+      "🤫 100% Confidential"
+    ]
+  },
+  "overlay": {
+    "title": "Unlock Your Free Consultation",
+    "sub": "Sign in now to claim your first 15-minute personal consultation with Shree Ayush Saxena for free.",
+    "signIn": "Sign In to Claim",
+    "noThanks": "Maybe later"
+  },
+  "footer": {
+    "preTitle": "Ready to Unlock Your Destiny?",
+    "bookFree": "Book Free Reading",
+    "tagline": "Vedic Astrologer guiding souls through the cosmic map of their destiny since 2020.",
+    "links": "Quick Links",
+    "contact": "Contact",
+    "rights": "All Rights Reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms",
+    "privacyText": "Your personal details (name, date of birth, place of birth) are used solely to generate your astrology reading. We do not sell or share your data with any third party. Payment information is handled securely by Razorpay and is never stored on our servers. By using this service you consent to this use.",
+    "termsText": "Consultations provided are for entertainment and guidance purposes only. Predictions are based on traditional Vedic astrology and do not constitute medical, legal, or financial advice. Results may vary. All sessions are non-refundable once confirmed. By booking a session you agree to these terms."
+  },
+  "hiw": {
+    "label": "The Process",
+    "title": "How It Works",
+    "steps": [
+      {
+        "title": "Fill Your Birth Details",
+        "desc": "Enter your name, date, time and place of birth in our free prediction form."
+      },
+      {
+        "title": "Get Matched with Ayush",
+        "desc": "Choose a convenient time slot and complete your secure booking via Razorpay."
+      },
+      {
+        "title": "Receive Guidance & Remedies",
+        "desc": "Get your personalised Vedic analysis with actionable remedies and gemstone advice."
+      }
+    ]
+  },
+  "panchang": {
+    "title": "Today's Panchang",
+    "tithi": "Tithi",
+    "nakshatra": "Nakshatra",
+    "yoga": "Yoga",
+    "karana": "Karana",
+    "rahuKalam": "Rahu Kalam"
+  },
+  "stats": {
+    "consultations": "Consultations",
+    "experience": "Years Experience",
+    "satisfaction": "Client Satisfaction",
+    "specialties": "Specialties"
+  },
+  "app": {
+    "whatsappLabel": "Chat with Astrologer",
+    "stickyBook": "Book Now — ₹500 / 30 min"
+  },
+  "llmDisplay": {
+    "loadingTitle": "Reading the celestial patterns...",
+    "loadingSub": "This takes a few seconds",
+    "personality": "Personality Insight",
+    "currentPhase": "Current Life Phase (Dasha)",
+    "career": "Career & Finance",
+    "relationships": "Relationships & Health",
+    "remedies": "Recommended Remedies",
+    "auspicious": "Auspicious Guidance"
+  }
+}
