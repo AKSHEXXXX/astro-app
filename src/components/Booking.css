@@ -128,6 +128,15 @@
   color: var(--accent-gold);
 }
 
+.slot-btn--booked {
+  opacity: 0.5;
+  background: rgba(255,255,255,0.05);
+  cursor: not-allowed !important;
+  color: rgba(255,255,255,0.3);
+  border-color: rgba(255,255,255,0.1) !important;
+  text-decoration: line-through;
+}
+
 .booking__total {
   display: flex;
   justify-content: space-between;

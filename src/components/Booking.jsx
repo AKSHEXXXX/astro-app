@@ -43,10 +43,29 @@ export default function Booking() {
   const days = getDays();
   const [selDay, setSelDay] = useState(0);
   const [selSlot, setSelSlot] = useState(null);
+  const [bookedSlots, setBookedSlots] = useState([]);
   const [booking, setBooking] = useState(false);
   const [done, setDone] = useState(false);
   const { t } = useTranslation();
   const { user, requireAuth, hasClaimedFreeConsult, refreshClaimStatus } = useAuth();
+
+  // Fetch booked slots for the selected day
+  const fetchBookedSlots = async () => {
+    const dateStr = days[selDay].toISOString().slice(0, 10);
+    const { data, error } = await supabase
+      .from('bookings')
+      .select('slot_time')
+      .eq('slot_date', dateStr)
+      .neq('status', 'cancelled');
+    
+    if (!error && data) {
+      setBookedSlots(data.map(b => b.slot_time));
+    }
+  };
+
+  useEffect(() => {
+    fetchBookedSlots();
+  }, [selDay]);
   
   const isFree = user && !hasClaimedFreeConsult;
   const currentAmount = isFree ? 0 : 500;
@@ -73,6 +92,7 @@ export default function Booking() {
       console.log('Booking successful, refreshing status...');
       setDone(true);
       setSelSlot(null);
+      fetchBookedSlots(); // Refresh UI immediately
       refreshClaimStatus();
       track('booking_completed', { day: dayLabel, slot: selSlot, amount: currentAmount });
     } else {
@@ -133,15 +153,19 @@ export default function Booking() {
 
             {/* Time slots */}
             <div className="booking__slots">
-              {SLOTS.map(s => (
-                <button
-                  key={s}
-                  className={`slot-btn${selSlot === s ? ' slot-btn--active' : ''}`}
-                  onClick={() => { setSelSlot(s); track('booking_slot_selected', { slot: s, day: dayLabel }); }}
-                >
-                  {s}
-                </button>
-              ))}
+              {SLOTS.map(s => {
+                const isBooked = bookedSlots.includes(s);
+                return (
+                  <button
+                    key={s}
+                    disabled={isBooked}
+                    className={`slot-btn${selSlot === s ? ' slot-btn--active' : ''}${isBooked ? ' slot-btn--booked' : ''}`}
+                    onClick={() => { setSelSlot(s); track('booking_slot_selected', { slot: s, day: dayLabel }); }}
+                  >
+                    {isBooked ? `${s} (Booked)` : s}
+                  </button>
+                );
+              })}
             </div>
 
             <div className="booking__total">
