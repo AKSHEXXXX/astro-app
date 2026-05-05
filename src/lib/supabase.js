@@ -3,7 +3,11 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseUrl  = import.meta.env.VITE_SUPABASE_URL;
 const supabaseKey  = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+if (!supabaseUrl || !supabaseKey) {
+  console.error('[Supabase] Missing environment variables! Check your Vercel/Local .env settings.');
+}
+
+export const supabase = createClient(supabaseUrl || 'https://placeholder.supabase.co', supabaseKey || 'placeholder');
 
 // ── Helper: save a free prediction to Supabase ──────────────────────────────
 export async function savePrediction({
