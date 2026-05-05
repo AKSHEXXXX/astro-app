@@ -4,6 +4,7 @@ import { track } from './posthog.js';
 import { useAuth } from './lib/AuthContext.jsx';
 import StarCanvas from './components/StarCanvas';
 import Navbar     from './components/Navbar';
+import { Analytics } from '@vercel/analytics/react';
 import Hero       from './components/Hero';
 import About      from './components/About';
 import Stats      from './components/Stats';
@@ -77,6 +78,7 @@ export default function App() {
     <>
       <StarCanvas />
       <Navbar />
+      <Analytics />
 
       {/* Global Auth Modal — renders on top of everything when triggered */}
       <AuthModal />
