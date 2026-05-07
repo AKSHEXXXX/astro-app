@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { ZodiacBar } from './ZodiacBar.jsx';
 import { track } from '../posthog.js';
+import { useAuth } from '../lib/AuthContext.jsx';
 import './Hero.css';
 
 // The large mandala SVG — concentric rings + petal pattern
