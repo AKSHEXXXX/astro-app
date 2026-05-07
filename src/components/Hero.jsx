@@ -88,6 +88,11 @@ function Mandala() {
 
 export default function Hero() {
   const { t } = useTranslation();
+  const { user, hasClaimedFreeConsult } = useAuth();
+
+  // If user is not logged in OR hasn't claimed free consult, show "Free Reading"
+  // If user HAS claimed free consult, show "Personal Reading"
+  const showFreeCTA = !user || !hasClaimedFreeConsult;
 
   return (
     <section id="home" className="hero">
@@ -107,7 +112,9 @@ export default function Hero() {
           {t('hero.sub')}
         </p>
         <div className="hero__ctas">
-          <a href="#prediction" className="btn-gold btn-gold-filled" onClick={() => track('hero_cta_clicked', { cta: 'get_free_reading' })}>{t('hero.ctaPrimary')}</a>
+          <a href="#prediction" className="btn-gold btn-gold-filled" onClick={() => track('hero_cta_clicked', { cta: 'get_reading' })}>
+            {showFreeCTA ? 'Book Free Reading' : 'Book Personal Reading'}
+          </a>
           <a href="#booking"    className="btn-gold btn-gold-outline" onClick={() => track('hero_cta_clicked', { cta: 'book_session' })}>{t('hero.ctaSecondary')}</a>
         </div>
       </div>

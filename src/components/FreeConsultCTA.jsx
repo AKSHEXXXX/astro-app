@@ -33,18 +33,18 @@ export function FreeConsultCTA() {
       </p>
       <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
         {hasClaimedFreeConsult ? (
-          <button
-            disabled
+          <a
+            href="#booking"
+            onClick={() => track('personal_consult_cta_clicked', { source: 'post_prediction' })}
             style={{
-              background: 'rgba(255,255,255,0.05)', color: 'rgba(245,239,224,0.3)',
+              background: '#c9a14a', color: '#1a1208',
               padding: '12px 24px', borderRadius: '10px',
-              border: '1px solid rgba(255,255,255,0.1)',
-              fontSize: '14px', fontWeight: 600,
-              display: 'inline-block', cursor: 'not-allowed'
+              fontSize: '14px', fontWeight: 600, textDecoration: 'none',
+              display: 'inline-block'
             }}
           >
-            {isHindi ? 'पहले ही दावा किया जा चुका है' : 'Already Claimed'}
-          </button>
+            {isHindi ? '📅 व्यक्तिगत रीडिंग बुक करें' : '📅 Book Personal Reading'}
+          </a>
         ) : (
           <a
             href="#booking"

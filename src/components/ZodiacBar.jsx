@@ -71,7 +71,8 @@ export function ZodiacBar() {
             display: 'flex',
             gap: '0',
             animation: 'zodiacScroll 45s linear infinite',
-          }}>
+            willChange: 'transform'
+          }} className="zodiac-scroll-container">
             {allSigns.map((sign, i) => (
               <div
                 key={`${sign.name}-${i}`}
@@ -94,7 +95,7 @@ export function ZodiacBar() {
                   {locale.startsWith('hi') ? sign.hindi : sign.name}
                 </span>
                 {horoscopes[sign.name] && (
-                  <span style={{ fontSize: '12px', color: 'rgba(245,239,224,0.5)', maxWidth: '500px', fontWeight: 400 }}>
+                  <span className="zodiac-item-text" style={{ fontSize: '12px', color: 'rgba(245,239,224,0.5)', maxWidth: '500px', fontWeight: 400 }}>
                     — {horoscopes[sign.name]}
                   </span>
                 )}
@@ -137,6 +138,10 @@ export function ZodiacBar() {
         @keyframes zodiacScroll {
           0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
+        }
+        @media (max-width: 768px) {
+          .zodiac-item-text { display: none; }
+          .zodiac-scroll-container { animation-duration: 30s !important; }
         }
       `}</style>
     </div>
