@@ -1,7 +1,11 @@
 import { useEffect } from 'react';
+import { useAuth } from '../lib/AuthContext.jsx';
+import { useTranslation } from 'react-i18next';
 import './BlogPost.css';
 
 export default function BlogPost({ post, onBack }) {
+  const { user, hasClaimedFreeConsult } = useAuth();
+  const showFreeCTA = !user || !hasClaimedFreeConsult;
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -51,12 +55,16 @@ export default function BlogPost({ post, onBack }) {
 
         {/* Book a Reading CTA */}
         <div className="blog-cta card">
-          <h3 className="blog-cta__title">Ready to understand your own stars?</h3>
+          <h3 className="blog-cta__title">
+            {showFreeCTA ? 'Ready to unlock your destiny?' : 'Ready to understand your own stars?'}
+          </h3>
           <p className="blog-cta__text">
-            Book a personalized 1-on-1 reading with Shree Ayush Saxena to get deep insights into your birth chart.
+            {showFreeCTA 
+              ? 'Sign in to claim your first 15-minute personal consultation for free.'
+              : 'Book a personalized 1-on-1 reading with Shree Ayush Saxena to get deep insights into your birth chart.'}
           </p>
-          <a href="#booking" onClick={onBack} className="btn-gold btn-gold-filled">
-            Book a Personal Reading
+          <a href={showFreeCTA ? "#prediction" : "#booking"} onClick={onBack} className="btn-gold btn-gold-filled">
+            {showFreeCTA ? 'Book Free Reading' : 'Book Personal Reading'}
           </a>
         </div>
       </div>

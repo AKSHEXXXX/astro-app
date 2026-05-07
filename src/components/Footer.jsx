@@ -1,16 +1,24 @@
 import { useTranslation } from 'react-i18next';
+import { useAuth } from '../lib/AuthContext.jsx';
 import './Footer.css';
 
 export default function Footer() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { user, hasClaimedFreeConsult } = useAuth();
+
+  const showFreeCTA = !user || !hasClaimedFreeConsult;
 
   return (
     <>
       {/* Pre-footer CTA band */}
       <div className="prefooter">
         <div className="container prefooter__inner">
-          <h2 className="prefooter__title">{t('footer.preTitle')}</h2>
-          <a href="#prediction" className="btn-gold btn-gold-filled">{t('footer.bookFree')}</a>
+          <h2 className="prefooter__title">
+            {showFreeCTA ? t('footer.preTitle') : (i18n?.language?.startsWith('hi') ? 'अपनी अगली व्यक्तिगत रीडिंग बुक करें' : 'Ready for your next deep-dive?')}
+          </h2>
+          <a href={showFreeCTA ? "#prediction" : "#booking"} className="btn-gold btn-gold-filled">
+            {showFreeCTA ? t('footer.bookFree') : (i18n?.language?.startsWith('hi') ? 'व्यक्तिगत रीडिंग बुक करें' : 'Book Personal Reading')}
+          </a>
         </div>
       </div>
 

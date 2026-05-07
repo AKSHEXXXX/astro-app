@@ -22,14 +22,18 @@ export function FreeConsultCTA() {
         {isHindi ? 'विशेष ऑफर' : 'Limited Time Offer'}
       </div>
       <h3 style={{ fontSize: '20px', fontWeight: 500, color: '#f5efe0', marginBottom: '8px', lineHeight: 1.3 }}>
-        {isHindi
-          ? 'पहली परामर्श — बिल्कुल मुफ्त'
-          : 'Your First Consultation — Completely Free'}
+        {hasClaimedFreeConsult
+          ? (isHindi ? 'अपनी अगली व्यक्तिगत रीडिंग बुक करें' : 'Book Your Personal Reading')
+          : (isHindi ? 'पहली परामर्श — बिल्कुल मुफ्त' : 'Your First Consultation — Completely Free')}
       </h3>
       <p style={{ fontSize: '14px', color: 'rgba(245,239,224,0.6)', marginBottom: '20px', lineHeight: 1.6, maxWidth: '420px', margin: '0 auto 20px' }}>
-        {isHindi
-          ? 'आयुष के साथ 15 मिनट की व्यक्तिगत Zoom/WhatsApp कॉल। अपने चार्ट के बारे में कोई भी प्रश्न पूछें — कोई शुल्क नहीं, कोई दबाव नहीं।'
-          : 'A personal 15-minute Zoom or WhatsApp call with Ayush. Ask anything about your chart — no charge, no pressure.'}
+        {hasClaimedFreeConsult
+          ? (isHindi
+            ? 'गहराई से विश्लेषण के लिए आयुष के साथ 30 मिनट का व्यक्तिगत सत्र।'
+            : 'A deep-dive 30-minute personal session with Ayush for detailed insights.')
+          : (isHindi
+            ? 'आयुष के साथ 15 मिनट की व्यक्तिगत Zoom/WhatsApp कॉल। अपने चार्ट के बारे में कोई भी प्रश्न पूछें — कोई शुल्क नहीं।'
+            : 'A personal 15-minute Zoom or WhatsApp call with Ayush. Ask anything about your chart — no charge.')}
       </p>
       <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
         {hasClaimedFreeConsult ? (
