@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { track } from '../posthog.js';
 import { useAuth } from '../lib/AuthContext.jsx';
@@ -46,11 +46,13 @@ export default function Booking() {
   const [bookedSlots, setBookedSlots] = useState([]);
   const [booking, setBooking] = useState(false);
   const [done, setDone] = useState(false);
+  const [err, setErr] = useState('');
   const { t } = useTranslation();
   const { user, requireAuth, hasClaimedFreeConsult, refreshClaimStatus } = useAuth();
 
   // Fetch booked slots for the selected day
   const fetchBookedSlots = async () => {
+    setErr('');
     const dateStr = days[selDay].toISOString().slice(0, 10);
     const { data, error } = await supabase
       .from('bookings')
@@ -92,12 +94,18 @@ export default function Booking() {
       console.log('Booking successful, refreshing status...');
       setDone(true);
       setSelSlot(null);
+      setErr('');
       fetchBookedSlots(); // Refresh UI immediately
       refreshClaimStatus();
       track('booking_completed', { day: dayLabel, slot: selSlot, amount: currentAmount });
     } else {
       console.error('Booking failed:', error);
-      alert('Something went wrong. Please try again.');
+      if (error.code === '23505') {
+        setErr('This slot was just booked by someone else. Please select another slot.');
+      } else {
+        setErr('Something went wrong. Please check your connection and try again.');
+      }
+      fetchBookedSlots(); // Refresh to show the newly taken slot
     }
   };
 
@@ -142,7 +150,7 @@ export default function Booking() {
                 <button
                   key={i}
                   className={`day-btn${selDay === i ? ' day-btn--active' : ''}`}
-                  onClick={() => { setSelDay(i); setSelSlot(null); }}
+                  onClick={() => { setSelDay(i); setSelSlot(null); setErr(''); }}
                 >
                   <span className="day-btn__name">{DAY_NAMES[d.getDay()]}</span>
                   <span className="day-btn__num">{d.getDate()}</span>
@@ -160,7 +168,7 @@ export default function Booking() {
                     key={s}
                     disabled={isBooked}
                     className={`slot-btn${selSlot === s ? ' slot-btn--active' : ''}${isBooked ? ' slot-btn--booked' : ''}`}
-                    onClick={() => { setSelSlot(s); track('booking_slot_selected', { slot: s, day: dayLabel }); }}
+                    onClick={() => { setSelSlot(s); setErr(''); track('booking_slot_selected', { slot: s, day: dayLabel }); }}
                   >
                     {isBooked ? `${s} (Booked)` : s}
                   </button>
@@ -183,6 +191,16 @@ export default function Booking() {
                 color: '#4ade80', fontSize: '0.88rem', marginBottom: '1rem'
               }}>
                 ✅ Booking confirmed! Ayush will contact you to finalise the session.
+              </div>
+            )}
+
+            {err && (
+              <div style={{
+                background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.3)',
+                borderRadius: '10px', padding: '14px 18px', textAlign: 'center',
+                color: '#f87171', fontSize: '0.88rem', marginBottom: '1rem'
+              }}>
+                ❌ {err}
               </div>
             )}
 
